@@ -1,7 +1,7 @@
 # orbit4ml
 
 <p align="center">
-  <img src="assets/logo.png" alt="orbit4ml" width="400"/>
+  <img src="assets/images/logo.png" alt="orbit4ml" width="400"/>
 </p>
 
 <p align="center">

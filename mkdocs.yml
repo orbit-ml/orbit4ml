@@ -7,7 +7,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
-  logo: assets/logo.png
+  logo: assets/images/logo.png
   favicon: assets/favicon.png
   palette:
     scheme: slate

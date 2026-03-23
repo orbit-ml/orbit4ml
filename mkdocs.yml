@@ -34,6 +34,8 @@ nav:
     - Getting Started: tutorials/getting_started.md
   - Documentation:
     - documentation/index.md
+    - orbit4ml.sim: documentation/sim.md
+    - orbit4ml.data: documentation/data.md
   - Examples:
     - examples/index.md
   - Community: community.md

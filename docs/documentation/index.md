@@ -1,13 +1,13 @@
-# Documentation
+# API Reference
 
-API reference for all orbit4ml submodules.
+Auto-generated reference for all orbit4ml submodules shipped in v0.1.
 
 ## Submodules
 
 | Module | Description | Status |
 |--------|-------------|--------|
-| `orbit4ml.sim` | Orbital digital twin (SGP4, eclipse, thermal, ISL, faults) | v0.1 |
-| `orbit4ml.data` | Space ML datasets and loaders | v0.1 |
+| [`orbit4ml.sim`](sim.md) | Orbital digital twin (SGP4, eclipse, thermal, ISL, faults) | v0.1 |
+| [`orbit4ml.data`](data.md) | Space ML datasets and loaders | v0.1 |
 | `orbit4ml.train` | Constraint-aware training loops | Planned (v0.2) |
 | `orbit4ml.fed` | Federated learning across constellations | Planned (v1.0) |
 | `orbit4ml.compress` | Model compression for space hardware | Planned (v0.3) |

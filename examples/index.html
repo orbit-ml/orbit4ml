@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://orbit-ml.github.io/orbit4ml/examples/">
       
       
-        <link rel="prev" href="../documentation/">
+        <link rel="prev" href="../documentation/data/">
       
       
         <link rel="next" href="../community/">
@@ -576,7 +576,63 @@
   <span class="md-ellipsis">
     
   
-    Documentation
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/sim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    orbit4ml.sim
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    orbit4ml.data
   
 
     
@@ -721,6 +777,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mvp-training-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MVP Training Loop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MVP Training Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-demonstrates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it demonstrates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#planned-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -828,6 +923,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mvp-training-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MVP Training Loop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MVP Training Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-demonstrates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it demonstrates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#planned-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -864,17 +998,114 @@
 
 
 <h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
-<p>Runnable notebooks and scripts demonstrating orbit4ml in action.</p>
-<div class="admonition note">
-<p class="admonition-title">Coming soon</p>
-<p>Examples will be added alongside each module release.</p>
-</div>
+<p>Runnable scripts demonstrating orbit4ml in action.</p>
+<h2 id="mvp-training-loop">MVP Training Loop<a class="headerlink" href="#mvp-training-loop" title="Permanent link">&para;</a></h2>
+<p>The main v0.1 example: simulate a 66-satellite constellation for 30 minutes and
+run a PyTorch training loop gated by orbital power and thermal constraints.</p>
+<p><strong>Source:</strong> <a href="https://github.com/orbit-ml/orbit4ml/blob/main/examples/mvp_training_loop.py"><code>examples/mvp_training_loop.py</code></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>examples/mvp_training_loop.py
+</code></pre></div>
+<details class="example">
+<summary>Full source code</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/usr/bin/env python3</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="sd">&quot;&quot;&quot;orbit4ml MVP: Training under orbital constraints.&quot;&quot;&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">orbit4ml</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">orbit4ml.sim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constellation</span><span class="p">,</span> <span class="n">DigitalTwin</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;orbit4ml v</span><span class="si">{</span><span class="n">orbit4ml</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="c1"># 1. Define a Starlink-like constellation</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="n">constellation</span> <span class="o">=</span> <span class="n">Constellation</span><span class="p">(</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">planes</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sats_per_plane</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">altitude</span><span class="o">=</span><span class="mi">550</span><span class="p">,</span> <span class="n">inclination</span><span class="o">=</span><span class="mf">53.0</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Constellation: </span><span class="si">{</span><span class="n">constellation</span><span class="o">.</span><span class="n">total_satellites</span><span class="si">}</span><span class="s2"> satellites&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">constellation</span><span class="o">.</span><span class="n">planes</span><span class="si">}</span><span class="s2"> planes x </span><span class="si">{</span><span class="n">constellation</span><span class="o">.</span><span class="n">sats_per_plane</span><span class="si">}</span><span class="s2"> sats/plane&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Altitude: </span><span class="si">{</span><span class="n">constellation</span><span class="o">.</span><span class="n">altitude</span><span class="si">}</span><span class="s2"> km, Inclination: </span><span class="si">{</span><span class="n">constellation</span><span class="o">.</span><span class="n">inclination</span><span class="si">}</span><span class="s2"> deg&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="c1"># 2. Create the digital twin</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">twin</span> <span class="o">=</span> <span class="n">DigitalTwin</span><span class="p">(</span><span class="n">constellation</span><span class="p">)</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="c1"># 3. Set up a simple model</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">64</span> <span class="o">*</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Simulating 30 minutes of orbital training...&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="n">total_steps</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="n">train_steps</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="n">eclipse_steps</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="c1"># 4. Propagate and train under constraints</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">twin</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">step_seconds</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>        <span class="k">for</span> <span class="n">sat</span> <span class="ow">in</span> <span class="n">epoch</span><span class="o">.</span><span class="n">satellites</span><span class="p">:</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>            <span class="n">total_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>            <span class="k">if</span> <span class="n">sat</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">available</span> <span class="ow">and</span> <span class="n">sat</span><span class="o">.</span><span class="n">thermal</span><span class="o">.</span><span class="n">within_budget</span><span class="p">:</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>                <span class="n">batch_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                <span class="n">batch_y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,))</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>                <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">batch_x</span><span class="p">),</span> <span class="n">batch_y</span><span class="p">)</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>                <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>                <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>                <span class="n">train_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>                <span class="n">eclipse_steps</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>        <span class="n">faults</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">epoch</span><span class="o">.</span><span class="n">satellites</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">faults</span><span class="o">.</span><span class="n">active</span><span class="p">]</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>        <span class="k">if</span> <span class="n">faults</span><span class="p">:</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  [</span><span class="si">{</span><span class="n">epoch</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">] Faults: </span><span class="si">{</span><span class="n">faults</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="c1"># 5. Report results</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total satellite-steps: </span><span class="si">{</span><span class="n">total_steps</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training steps (sunlit + thermal OK): </span><span class="si">{</span><span class="n">train_steps</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Idle steps (eclipse or thermal limit): </span><span class="si">{</span><span class="n">eclipse_steps</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training utilization: </span><span class="si">{</span><span class="n">train_steps</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_steps</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<h3 id="what-it-demonstrates">What it demonstrates<a class="headerlink" href="#what-it-demonstrates" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Constellation setup</strong> — 66 satellites in a Walker-delta pattern (6 planes x 11 sats)</li>
+<li><strong>Orbital simulation</strong> — SGP4 propagation with 60-second timesteps</li>
+<li><strong>Constraint gating</strong> — training only happens when <code>power.available</code> and <code>thermal.within_budget</code> are both True</li>
+<li><strong>Fault injection</strong> — stochastic hardware faults (SEUs, thermal shutdowns, link failures) are logged</li>
+<li><strong>Utilization metrics</strong> — reports what fraction of satellite-time was usable for training (~70%)</li>
+</ol>
+<h3 id="expected-output">Expected output<a class="headerlink" href="#expected-output" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>orbit4ml v0.1.0
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>==================================================
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Constellation: 66 satellites
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  6 planes x 11 sats/plane
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  Altitude: 550.0 km, Inclination: 53.0 deg
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Simulating 30 minutes of orbital training...
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>--------------------------------------------------
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>--------------------------------------------------
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>Total satellite-steps: 2046
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  Training steps (sunlit + thermal OK): 1442
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  Idle steps (eclipse or thermal limit): 604
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  Training utilization: 70.5%
+</code></pre></div>
 <h2 id="planned-examples">Planned Examples<a class="headerlink" href="#planned-examples" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Few-shot classification on satellite imagery</li>
-<li>Telemetry anomaly detection with limited labels</li>
-<li>Quantizing a model to run on a radiation-tolerant FPGA</li>
-<li>Federated learning across a satellite constellation</li>
+<li><strong>EuroSAT Classification</strong> — Train a CNN on satellite imagery with orbital constraints</li>
+<li><strong>Constellation Visualization</strong> — Plot satellite positions and eclipse regions</li>
+<li><strong>Thermal Profiling</strong> — Analyze GPU thermal budgets across different orbits</li>
+<li><strong>Multi-Satellite Federated Training</strong> — Gradient exchange over inter-satellite links (v1.0)</li>
 </ul>
 
 

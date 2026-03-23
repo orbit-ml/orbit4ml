@@ -23,7 +23,7 @@ Deploying ML in space introduces a unique set of constraints that terrestrial fr
 - **Compute** — radiation-hardened processors run at a fraction of the speed and capability of modern GPUs. FPGAs and ASICs dominate.
 - **Bandwidth** — downlink windows are short and expensive. Models must process data on-board and transmit only what matters.
 - **Latency** — the speed of light makes real-time ground control loops impossible beyond LEO. Autonomy is not optional.
-- **Data scarcity** — labeled datasets from space missions are rare. Few-shot and meta-learning approaches are essential.
+- **Data scarcity** — labeled datasets from space missions are rare. Federated and continual learning approaches are essential.
 - **Reliability** — cosmic ray bit flips, thermal cycling, and single-event upsets demand fault-tolerant training and inference.
 
 orbit4ml is built to address these constraints directly, providing implementations and abstractions that space ML practitioners can use out of the box.
@@ -32,45 +32,46 @@ orbit4ml is built to address these constraints directly, providing implementatio
 
 orbit4ml is organized into focused submodules:
 
-- **`orbit4ml.data`** — Datasets, transforms, and task samplers for space imagery, telemetry, and scientific observations.
-- **`orbit4ml.compress`** — Model compression, quantization, and pruning pipelines optimized for low-bandwidth uplink/downlink constraints.
-- **`orbit4ml.edge`** — Inference engines and model exporters targeting space-grade hardware: FPGAs, radiation-tolerant SoCs, and embedded processors.
-- **`orbit4ml.adapt`** — Meta-learning and continual learning algorithms for in-orbit adaptation with minimal data and no ground-in-the-loop.
-- **`orbit4ml.comm`** — Utilities for delay-tolerant networking (DTN), intermittent connectivity, and federated learning across satellite constellations.
-- **`orbit4ml.bench`** — Standardized benchmarks and evaluation protocols for space ML tasks, enabling fair comparison across methods.
+- **`orbit4ml.sim`** — Physics-based orbital digital twin: SGP4 propagation, eclipse modeling, thermal constraints, inter-satellite links, and fault injection.
+- **`orbit4ml.data`** — Datasets, transforms, and loaders for space imagery, telemetry, and scientific observations.
+- **`orbit4ml.train`** — Constraint-aware training loops for large models: power-aware scheduling, thermal throttling, checkpoint/resume across eclipse cycles (coming in v0.2).
+- **`orbit4ml.fed`** — Federated learning across satellite constellations with topology-aware aggregation (coming in v1.0).
+- **`orbit4ml.compress`** — Model compression, quantization, and pruning pipelines for bandwidth-constrained missions (coming in v0.3).
+- **`orbit4ml.edge`** — Inference engines targeting space-grade hardware: FPGAs, radiation-tolerant SoCs (coming in v0.3).
+- **`orbit4ml.bench`** — Standardized benchmarks and evaluation protocols (coming in v0.2).
 
 ## Installation
-
-!!! note "Coming soon"
-    orbit4ml is under active development. The first release will be announced on GitHub.
 
 ```bash
 pip install orbit4ml
 ```
 
-## Snippets & Examples
-
-### High-level Wrappers
+## Quick Start
 
 ```python
-import orbit4ml
+from datetime import datetime
+import torch
+from orbit4ml.sim import Constellation, DigitalTwin
 
-# Coming soon
-```
+# Create a 66-satellite constellation
+constellation = Constellation(
+    planes=6, sats_per_plane=11, altitude=550, inclination=53.0
+)
+twin = DigitalTwin(constellation)
 
-### Learning Domains
+# Simulate training under orbital constraints
+model = torch.nn.Sequential(torch.nn.Flatten(), torch.nn.Linear(3 * 64 * 64, 10))
+optimizer = torch.optim.Adam(model.parameters())
 
-orbit4ml will ship with ready-to-use learning domains covering:
-
-- Earth observation (multispectral, SAR, hyperspectral)
-- Spacecraft telemetry anomaly detection
-- Space situational awareness
-- On-board science autonomy
-
-### Low-Level Utilities
-
-```python
-# Coming soon
+for epoch in twin.propagate(start=datetime(2026, 6, 1), hours=0.5, step_seconds=60):
+    for sat in epoch.satellites:
+        if sat.power.available and sat.thermal.within_budget:
+            batch = torch.randn(8, 3, 64, 64)
+            labels = torch.randint(0, 10, (8,))
+            loss = torch.nn.functional.cross_entropy(model(batch), labels)
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
 ```
 
 ## Citation

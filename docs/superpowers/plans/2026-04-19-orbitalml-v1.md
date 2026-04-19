@@ -1,8 +1,8 @@
-# Planet Harness v1 Implementation Plan
+# orbitalml v1 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Ship v1 of Planet Harness — the interactive showcase site for orbit4ml at `planetharness.com`. Homepage, 3 Learn tutorials with in-browser Python, JupyterLite playground, blog, benchmarks, For Missions lead capture, Community page. Dark theme, mobile-responsive.
+**Goal:** Ship v1 of orbitalml — the interactive showcase site for orbit4ml at `orbitalml.com`. Homepage, 3 Learn tutorials with in-browser Python, JupyterLite playground, blog, benchmarks, For Missions lead capture, Community page. Dark theme, mobile-responsive.
 
 **Architecture:** Astro static site with React islands for interactive pieces (CodeRunner/Pyodide, ConstellationViz/three.js, NewsletterSignup). MDX for tutorials and blog. Content collections for typed authoring. Vercel for hosting + preview deploys + serverless contact form. Playwright + Lighthouse CI for quality gates.
 
@@ -14,18 +14,18 @@
 
 **Before starting task 1, the human must:**
 
-1. Create an empty GitHub repo at `https://github.com/orbit-ml/planetharness` (public, no README, no .gitignore, no license — these will be committed from Task 1)
-2. Create the local project directory: `mkdir C:/Users/mmallick7/planetharness`
-3. Initialize it with the remote: `cd C:/Users/mmallick7/planetharness && git init && git remote add origin https://github.com/orbit-ml/planetharness.git`
+1. Create an empty GitHub repo at `https://github.com/orbit-ml/orbitalml` (public, no README, no .gitignore, no license — these will be committed from Task 1)
+2. Create the local project directory: `mkdir C:/Users/mmallick7/orbitalml`
+3. Initialize it with the remote: `cd C:/Users/mmallick7/orbitalml && git init && git remote add origin https://github.com/orbit-ml/orbitalml.git`
 
-All tasks below are executed inside `C:/Users/mmallick7/planetharness/` unless noted.
+All tasks below are executed inside `C:/Users/mmallick7/orbitalml/` unless noted.
 
 **Third-party account setup (do as reached — not blocking Task 1):**
 
 - **Vercel** — connect to the GitHub repo once Task 32 starts
 - **Buttondown** — create account, grab API key, set env var `BUTTONDOWN_API_KEY` (see Task 11)
 - **Formspree** — create a form for contact, grab form ID, set env var `FORMSPREE_FORM_ID` (see Task 30)
-- **Plausible** — create site for `planetharness.com`, grab script snippet (see Task 32)
+- **Plausible** — create site for `orbitalml.com`, grab script snippet (see Task 32)
 
 ---
 
@@ -39,7 +39,7 @@ All tasks below are executed inside `C:/Users/mmallick7/planetharness/` unless n
 - [ ] **Step 1: Run Astro scaffold**
 
 ```bash
-cd C:/Users/mmallick7/planetharness
+cd C:/Users/mmallick7/orbitalml
 npm create astro@latest . -- --template minimal --typescript strict --no-install --no-git --yes
 ```
 
@@ -66,7 +66,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://planetharness.com',
+  site: 'https://orbitalml.com',
   integrations: [react(), mdx(), sitemap()],
   trailingSlash: 'never',
 });
@@ -77,7 +77,7 @@ export default defineConfig({
 Overwrite `README.md`:
 
 ```markdown
-# Planet Harness
+# orbitalml
 
 The interactive showcase site for [orbit4ml](https://github.com/orbit-ml/orbit4ml).
 
@@ -325,7 +325,7 @@ const {
   ogImage = '/og-default.png',
 } = Astro.props;
 
-const fullTitle = title === 'Planet Harness' ? title : `${title} · Planet Harness`;
+const fullTitle = title === 'orbitalml' ? title : `${title} · orbitalml`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -400,9 +400,9 @@ const pathname = Astro.url.pathname;
 
 <header class="nav">
   <div class="container nav-inner">
-    <a href="/" class="brand" aria-label="Planet Harness home">
+    <a href="/" class="brand" aria-label="orbitalml home">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-name">Planet Harness</span>
+      <span class="brand-name">orbitalml</span>
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -527,7 +527,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-col">
-      <div class="footer-brand">Planet Harness</div>
+      <div class="footer-brand">orbitalml</div>
       <p class="footer-tagline">ML harness for the planet.</p>
       <p class="footer-meta">Powered by <a href="https://github.com/orbit-ml/orbit4ml">orbit4ml</a> · MIT License</p>
     </div>
@@ -558,7 +558,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© {year} Planet Harness</span>
+    <span>© {year} orbitalml</span>
     <span class="mono">v1.0</span>
   </div>
 </footer>
@@ -1215,7 +1215,7 @@ BUTTONDOWN_API_KEY=
 FORMSPREE_FORM_ID=
 
 # Plausible (optional — falls back to no analytics if empty)
-PUBLIC_PLAUSIBLE_DOMAIN=planetharness.com
+PUBLIC_PLAUSIBLE_DOMAIN=orbitalml.com
 ```
 
 Add `.env` to `.gitignore` (ensure it's present — should already be from Astro scaffold):
@@ -1251,7 +1251,7 @@ import FeatureGrid from '../components/FeatureGrid.astro';
 import NewsletterSignup from '../components/NewsletterSignup.tsx';
 ---
 
-<BaseLayout title="Planet Harness">
+<BaseLayout title="orbitalml">
   <Hero />
   <FeatureGrid />
   <section class="newsletter-section">
@@ -2295,7 +2295,7 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<BaseLayout title="Blog" description="Thought leadership, benchmarks, and case studies from the Planet Harness team.">
+<BaseLayout title="Blog" description="Thought leadership, benchmarks, and case studies from the orbitalml team.">
   <section class="blog">
     <div class="container">
       <div class="head">
@@ -2343,7 +2343,7 @@ git push
 
 ---
 
-### Task 23: Launch blog post — "Introducing Planet Harness"
+### Task 23: Launch blog post — "Introducing orbitalml"
 
 **Files:**
 - Create: `src/content/blog/introducing-planet-harness.mdx`
@@ -2354,18 +2354,18 @@ Create `src/content/blog/introducing-planet-harness.mdx`:
 
 ```mdx
 ---
-title: "Introducing Planet Harness"
+title: "Introducing orbitalml"
 description: "A new home for open-source machine learning in space — interactive tutorials, real benchmarks, zero install friction."
 date: 2026-04-19
 author: Mainak Mallick
 tags: [announcement, orbit4ml]
 ---
 
-Today we're launching **Planet Harness**: the interactive front door for `orbit4ml`, our open ecosystem for machine learning in space.
+Today we're launching **orbitalml**: the interactive front door for `orbit4ml`, our open ecosystem for machine learning in space.
 
 Until today, if you wanted to understand what it takes to train ML models in orbit, your choices were: read dense aerospace papers, dig into the `orbit4ml` API docs, or run our library locally. All three are valid. None of them are *exciting*.
 
-Planet Harness fixes that.
+orbitalml fixes that.
 
 ## What you'll find here
 
@@ -2378,7 +2378,7 @@ Planet Harness fixes that.
 
 Space ML is hard *because the physics is unforgiving*, not because Python is hard. An L2-bound CubeSat with a 100W solar panel and a 25°C thermal budget is a very different compute environment than a data center. Every shortcut you take on the ground is a mission risk in orbit.
 
-`orbit4ml` makes those constraints first-class in your code: `if sat.power.available and sat.thermal.within_budget: train()` is the whole abstraction. Planet Harness lets you *feel* that in a browser tab.
+`orbit4ml` makes those constraints first-class in your code: `if sat.power.available and sat.thermal.within_budget: train()` is the whole abstraction. orbitalml lets you *feel* that in a browser tab.
 
 ## What's next
 
@@ -2390,7 +2390,7 @@ v1 ships with three tutorials, a playground, and the first round of benchmarks. 
 
 If that sounds interesting, [subscribe to the newsletter](/#newsletter) or [star the repo on GitHub](https://github.com/orbit-ml/orbit4ml). And if you're flying a real mission with ML on board, [come talk to us](/missions).
 
-Welcome to Planet Harness. Let's harness the planet.
+Welcome to orbitalml. Let's harness the planet.
 ```
 
 - [ ] **Step 2: Commit**
@@ -2615,7 +2615,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const resp = await fetch(`https://formspree.io/f/${formId}`, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, organization, message, _subject: 'Planet Harness — Missions inquiry' }),
+      body: JSON.stringify({ name, email, organization, message, _subject: 'orbitalml — Missions inquiry' }),
     });
     if (!resp.ok) return res.status(502).json({ error: 'Upstream error' });
     return res.status(200).json({ ok: true });
@@ -2830,7 +2830,7 @@ const channels = [
 ];
 ---
 
-<BaseLayout title="Community" description="Get involved with orbit4ml and Planet Harness.">
+<BaseLayout title="Community" description="Get involved with orbit4ml and orbitalml.">
   <section class="community">
     <div class="container">
       <div class="head">
@@ -3266,19 +3266,19 @@ git push
 The human performs these steps (one-time setup, not scripted):
 
 1. Go to https://vercel.com/new
-2. Import the `orbit-ml/planetharness` repo
+2. Import the `orbit-ml/orbitalml` repo
 3. Framework preset: **Astro** (auto-detected)
 4. Environment variables to add:
    - `BUTTONDOWN_API_KEY` = (from Buttondown dashboard)
    - `FORMSPREE_FORM_ID` = (from Formspree dashboard)
-   - `PUBLIC_PLAUSIBLE_DOMAIN` = `planetharness.com`
+   - `PUBLIC_PLAUSIBLE_DOMAIN` = `orbitalml.com`
 5. Click **Deploy**
-6. Once live, add custom domain `planetharness.com` in Vercel → Settings → Domains
+6. Once live, add custom domain `orbitalml.com` in Vercel → Settings → Domains
 7. Update DNS at the domain registrar per Vercel's instructions (typically an A record and a CNAME)
 
 - [ ] **Step 4: Verify deploy**
 
-Once DNS propagates, visit `https://planetharness.com` and confirm:
+Once DNS propagates, visit `https://orbitalml.com` and confirm:
 - Homepage renders with hero animation
 - Nav works, all 7 sections load
 - `/learn/getting-started` runs a Pyodide code block
@@ -3328,7 +3328,7 @@ git push
 Overwrite `README.md`:
 
 ```markdown
-# Planet Harness
+# orbitalml
 
 The interactive showcase site for [orbit4ml](https://github.com/orbit-ml/orbit4ml).
 
@@ -3389,10 +3389,10 @@ Create `LAUNCH.md`:
 ```markdown
 # Launch Checklist
 
-One-time steps to take Planet Harness v1 live.
+One-time steps to take orbitalml v1 live.
 
 ## DNS & domain
-- [ ] Register `planetharness.com` at a registrar
+- [ ] Register `orbitalml.com` at a registrar
 - [ ] Add custom domain in Vercel project
 - [ ] Add A/CNAME records per Vercel instructions
 - [ ] Verify SSL is issued (Vercel auto-issues Let's Encrypt)
@@ -3400,10 +3400,10 @@ One-time steps to take Planet Harness v1 live.
 ## Env vars (Vercel → Project → Settings → Environment Variables)
 - [ ] `BUTTONDOWN_API_KEY` (from buttondown.email → Settings → API)
 - [ ] `FORMSPREE_FORM_ID` (from formspree.io → New form)
-- [ ] `PUBLIC_PLAUSIBLE_DOMAIN` = `planetharness.com`
+- [ ] `PUBLIC_PLAUSIBLE_DOMAIN` = `orbitalml.com`
 
 ## Analytics
-- [ ] Create Plausible site for `planetharness.com`
+- [ ] Create Plausible site for `orbitalml.com`
 - [ ] Verify Plausible is receiving events after deploy
 
 ## Pre-launch verification
@@ -3422,7 +3422,7 @@ One-time steps to take Planet Harness v1 live.
 - [ ] Merge `main` → production deploy
 - [ ] Announce on GitHub Discussions
 - [ ] Post launch blog post link to relevant communities (HackerNews, /r/space, space-ML Slack groups, Twitter/X)
-- [ ] Update `orbit4ml` README with "See the interactive tutorials at planetharness.com"
+- [ ] Update `orbit4ml` README with "See the interactive tutorials at orbitalml.com"
 
 ## Post-launch (week 1)
 - [ ] Watch for 404s in Vercel logs — fix broken links

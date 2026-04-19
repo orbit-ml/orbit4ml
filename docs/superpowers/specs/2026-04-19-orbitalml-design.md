@@ -1,11 +1,13 @@
-# Planet Harness — Design Spec
+# orbitalml — Design Spec
+
+> **Rename note (2026-04-19):** This platform was originally named "Planet Harness" during brainstorming; renamed to **orbitalml** after the GitHub repo was created at `orbit-ml/orbitalml`. File names preserved for history; content updated throughout. Tagline is pending final user confirmation.
 
 **Date:** 2026-04-19
 **Status:** Draft, pending implementation plan
 
 ## Purpose
 
-Planet Harness is the interactive showcase site for the `orbit4ml` open-source library. It serves two aligned goals:
+orbitalml is the interactive showcase site for the `orbit4ml` open-source library. It serves two aligned goals:
 
 1. **CSR mission** — Lower the activation energy for anyone curious about ML in space. No install, no signup, instant interactivity.
 2. **Commercial pipeline** — Signal credibility and capture leads for the space ML runtime company the user is building around `orbit4ml`.
@@ -14,14 +16,14 @@ The site is a **marketing/learning asset, not a SaaS.** No accounts, no compute-
 
 ## Name and Tagline
 
-- **Name:** Planet Harness
+- **Name:** orbitalml
 - **Tagline (H1 on hero):** *ML harness for the planet.*
 - **Sub-copy:** "Interactive tutorials, benchmarks, and playgrounds for machine learning under the real constraints of space. No install required."
 
 ## Relationship to Existing orbit4ml Docs
 
-- **Planet Harness** (new) — The "front door." Hero, tutorials, playground, blog, benchmarks, lead capture.
-- **orbit4ml MkDocs site** (existing, at `orbit-ml.github.io/orbit4ml`) — Stays as the auto-generated API reference. Planet Harness's "Docs" nav links out to it.
+- **orbitalml** (new) — The "front door." Hero, tutorials, playground, blog, benchmarks, lead capture.
+- **orbit4ml MkDocs site** (existing, at `orbit-ml.github.io/orbit4ml`) — Stays as the auto-generated API reference. orbitalml's "Docs" nav links out to it.
 
 Two sites, one visual identity. Future work may unify them, but that's out of scope for v1.
 
@@ -70,12 +72,12 @@ Different tech for different surfaces — each picked for the best UX at that su
 - **Code execution:** Pyodide 0.x (latest stable) loaded on-demand per page; JupyterLite hosted for the Playground surface.
 - **Lead capture:** Newsletter via **Buttondown** or **ConvertKit** (hosted, no infra). "For Missions" contact form via **Formspree** or Vercel serverless function posting to email.
 - **Analytics:** **Plausible** (privacy-friendly, no cookie banner) or Vercel Analytics.
-- **Repo layout:** Standalone `planetharness` repo (separate from `orbit4ml` library repo). Library consumed via its documented public API.
+- **Repo layout:** Standalone `orbitalml` repo (separate from `orbit4ml` library repo). Library consumed via its documented public API.
 
 ## Architecture Outline
 
 ```
-planetharness/
+orbitalml/
 ├── astro.config.mjs
 ├── src/
 │   ├── pages/
@@ -122,7 +124,7 @@ Each module is one thing:
 - Community page with GitHub Discussions embed/link
 - Mobile-responsive (breakpoints: 640px, 1024px)
 - Dark theme only (no light mode for v1)
-- Custom domain: `planetharness.com` (user to register)
+- Custom domain: `orbitalml.com` (user to register)
 
 ## What's Out of Scope (v1, defer explicitly)
 
@@ -164,7 +166,7 @@ Each of these is a legitimate future addition, but shipping v1 without them is e
 
 ## Non-Goals
 
-- Replacing the MkDocs API reference (it stays; Planet Harness links to it)
+- Replacing the MkDocs API reference (it stays; orbitalml links to it)
 - Replacing GitHub Discussions with a self-hosted forum
 - Building a full LMS
-- Competing with Kaggle / Hugging Face Spaces — Planet Harness is specialized for space ML, not a general platform
+- Competing with Kaggle / Hugging Face Spaces — orbitalml is specialized for space ML, not a general platform

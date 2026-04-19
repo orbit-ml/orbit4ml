@@ -17,7 +17,7 @@ The site is a **marketing/learning asset, not a SaaS.** No accounts, no compute-
 ## Name and Tagline
 
 - **Name:** orbitalml
-- **Tagline (H1 on hero):** *ML harness for the planet.*
+- **Tagline (H1 on hero):** *Machine learning, in orbit.*
 - **Sub-copy:** "Interactive tutorials, benchmarks, and playgrounds for machine learning under the real constraints of space. No install required."
 
 ## Relationship to Existing orbit4ml Docs

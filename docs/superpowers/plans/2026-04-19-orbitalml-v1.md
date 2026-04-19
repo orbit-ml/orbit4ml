@@ -81,7 +81,7 @@ Overwrite `README.md`:
 
 The interactive showcase site for [orbit4ml](https://github.com/orbit-ml/orbit4ml).
 
-> ML harness for the planet.
+> Machine learning, in orbit.
 
 ## Develop
 
@@ -321,7 +321,7 @@ export interface Props {
 
 const {
   title,
-  description = 'ML harness for the planet. Interactive tutorials, benchmarks, and playgrounds for machine learning in space.',
+  description = 'Machine learning, in orbit. Interactive tutorials, benchmarks, and playgrounds for machine learning in space.',
   ogImage = '/og-default.png',
 } = Astro.props;
 
@@ -528,7 +528,7 @@ const year = new Date().getFullYear();
   <div class="container footer-inner">
     <div class="footer-col">
       <div class="footer-brand">orbitalml</div>
-      <p class="footer-tagline">ML harness for the planet.</p>
+      <p class="footer-tagline">Machine learning, in orbit.</p>
       <p class="footer-meta">Powered by <a href="https://github.com/orbit-ml/orbit4ml">orbit4ml</a> · MIT License</p>
     </div>
     <div class="footer-col">
@@ -809,7 +809,7 @@ import ConstellationViz from './ConstellationViz.tsx';
     <div class="hero-copy">
       <div class="micro-label">POWERED BY ORBIT4ML · OPEN SOURCE · MIT</div>
       <h1 class="hero-headline">
-        <span class="gradient">ML harness<br />for the planet.</span>
+        <span class="gradient">Machine learning,<br />in orbit.</span>
       </h1>
       <p class="hero-sub">
         Interactive tutorials, benchmarks, and playgrounds for machine learning
@@ -2390,7 +2390,7 @@ v1 ships with three tutorials, a playground, and the first round of benchmarks. 
 
 If that sounds interesting, [subscribe to the newsletter](/#newsletter) or [star the repo on GitHub](https://github.com/orbit-ml/orbit4ml). And if you're flying a real mission with ML on board, [come talk to us](/missions).
 
-Welcome to orbitalml. Let's harness the planet.
+Welcome to orbitalml. Let's put machine learning in orbit.
 ```
 
 - [ ] **Step 2: Commit**
@@ -2948,7 +2948,7 @@ import { test, expect } from '@playwright/test';
 
 test('homepage renders hero and feature grid', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(/ML harness for the planet/i);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/Machine learning, in orbit/i);
   await expect(page.getByRole('link', { name: /Try in browser/i })).toBeVisible();
   await expect(page.getByText('Simulate orbital constraints')).toBeVisible();
 });
@@ -3332,7 +3332,7 @@ Overwrite `README.md`:
 
 The interactive showcase site for [orbit4ml](https://github.com/orbit-ml/orbit4ml).
 
-> ML harness for the planet.
+> Machine learning, in orbit.
 
 ## Develop
 

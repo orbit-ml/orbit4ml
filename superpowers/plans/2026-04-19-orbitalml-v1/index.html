@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://orbit-ml.github.io/orbit4ml/superpowers/plans/2026-04-19-planetharness-v1/">
+        <link rel="canonical" href="https://orbit-ml.github.io/orbit4ml/superpowers/plans/2026-04-19-orbitalml-v1/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Planet Harness v1 Implementation Plan - orbit4ml</title>
+        <title>orbitalml v1 Implementation Plan - orbit4ml</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#planet-harness-v1-implementation-plan" class="md-skip">
+        <a href="#orbitalml-v1-implementation-plan" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Planet Harness v1 Implementation Plan
+              orbitalml v1 Implementation Plan
             
           </span>
         </div>
@@ -1215,10 +1215,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#task-23-launch-blog-post-introducing-planet-harness" class="md-nav__link">
+  <a href="#task-23-launch-blog-post-introducing-orbitalml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Task 23: Launch blog post — "Introducing Planet Harness"
+        Task 23: Launch blog post — "Introducing orbitalml"
       
     </span>
   </a>
@@ -1462,7 +1462,7 @@
 
 
   
-    <a href="https://github.com/orbit-ml/orbit4ml/edit/main/docs/superpowers/plans/2026-04-19-planetharness-v1.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/orbit-ml/orbit4ml/edit/main/docs/superpowers/plans/2026-04-19-orbitalml-v1.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1470,28 +1470,28 @@
   
 
 
-<h1 id="planet-harness-v1-implementation-plan">Planet Harness v1 Implementation Plan<a class="headerlink" href="#planet-harness-v1-implementation-plan" title="Permanent link">&para;</a></h1>
+<h1 id="orbitalml-v1-implementation-plan">orbitalml v1 Implementation Plan<a class="headerlink" href="#orbitalml-v1-implementation-plan" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>For agentic workers:</strong> REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (<code>- [ ]</code>) syntax for tracking.</p>
 </blockquote>
-<p><strong>Goal:</strong> Ship v1 of Planet Harness — the interactive showcase site for orbit4ml at <code>planetharness.com</code>. Homepage, 3 Learn tutorials with in-browser Python, JupyterLite playground, blog, benchmarks, For Missions lead capture, Community page. Dark theme, mobile-responsive.</p>
+<p><strong>Goal:</strong> Ship v1 of orbitalml — the interactive showcase site for orbit4ml at <code>orbitalml.com</code>. Homepage, 3 Learn tutorials with in-browser Python, JupyterLite playground, blog, benchmarks, For Missions lead capture, Community page. Dark theme, mobile-responsive.</p>
 <p><strong>Architecture:</strong> Astro static site with React islands for interactive pieces (CodeRunner/Pyodide, ConstellationViz/three.js, NewsletterSignup). MDX for tutorials and blog. Content collections for typed authoring. Vercel for hosting + preview deploys + serverless contact form. Playwright + Lighthouse CI for quality gates.</p>
 <p><strong>Tech Stack:</strong> Astro 4.x, TypeScript, React 18, react-three-fiber, Pyodide 0.25+, JupyterLite, Buttondown (newsletter), Formspree (contact), Plausible (analytics), Playwright, Vercel.</p>
 <hr />
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <p><strong>Before starting task 1, the human must:</strong></p>
 <ol>
-<li>Create an empty GitHub repo at <code>https://github.com/orbit-ml/planetharness</code> (public, no README, no .gitignore, no license — these will be committed from Task 1)</li>
-<li>Create the local project directory: <code>mkdir C:/Users/mmallick7/planetharness</code></li>
-<li>Initialize it with the remote: <code>cd C:/Users/mmallick7/planetharness &amp;&amp; git init &amp;&amp; git remote add origin https://github.com/orbit-ml/planetharness.git</code></li>
+<li>Create an empty GitHub repo at <code>https://github.com/orbit-ml/orbitalml</code> (public, no README, no .gitignore, no license — these will be committed from Task 1)</li>
+<li>Create the local project directory: <code>mkdir C:/Users/mmallick7/orbitalml</code></li>
+<li>Initialize it with the remote: <code>cd C:/Users/mmallick7/orbitalml &amp;&amp; git init &amp;&amp; git remote add origin https://github.com/orbit-ml/orbitalml.git</code></li>
 </ol>
-<p>All tasks below are executed inside <code>C:/Users/mmallick7/planetharness/</code> unless noted.</p>
+<p>All tasks below are executed inside <code>C:/Users/mmallick7/orbitalml/</code> unless noted.</p>
 <p><strong>Third-party account setup (do as reached — not blocking Task 1):</strong></p>
 <ul>
 <li><strong>Vercel</strong> — connect to the GitHub repo once Task 32 starts</li>
 <li><strong>Buttondown</strong> — create account, grab API key, set env var <code>BUTTONDOWN_API_KEY</code> (see Task 11)</li>
 <li><strong>Formspree</strong> — create a form for contact, grab form ID, set env var <code>FORMSPREE_FORM_ID</code> (see Task 30)</li>
-<li><strong>Plausible</strong> — create site for <code>planetharness.com</code>, grab script snippet (see Task 32)</li>
+<li><strong>Plausible</strong> — create site for <code>orbitalml.com</code>, grab script snippet (see Task 32)</li>
 </ul>
 <hr />
 <h2 id="phase-1-foundation">Phase 1: Foundation<a class="headerlink" href="#phase-1-foundation" title="Permanent link">&para;</a></h2>
@@ -1501,7 +1501,7 @@
 <ul>
 <li>[ ] <strong>Step 1: Run Astro scaffold</strong></li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>C:/Users/mmallick7/planetharness
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>C:/Users/mmallick7/orbitalml
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>npm<span class="w"> </span>create<span class="w"> </span>astro@latest<span class="w"> </span>.<span class="w"> </span>--<span class="w"> </span>--template<span class="w"> </span>minimal<span class="w"> </span>--typescript<span class="w"> </span>strict<span class="w"> </span>--no-install<span class="w"> </span>--no-git<span class="w"> </span>--yes
 </code></pre></div>
 <p>Expected: creates <code>src/</code>, <code>public/</code>, <code>package.json</code>, <code>astro.config.mjs</code>, <code>tsconfig.json</code>.</p>
@@ -1523,7 +1523,7 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">import</span><span class="w"> </span><span class="nx">sitemap</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@astrojs/sitemap&#39;</span><span class="p">;</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">defineConfig</span><span class="p">({</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">site</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://planetharness.com&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">site</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://orbitalml.com&#39;</span><span class="p">,</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nx">integrations</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">react</span><span class="p">(),</span><span class="w"> </span><span class="nx">mdx</span><span class="p">(),</span><span class="w"> </span><span class="nx">sitemap</span><span class="p">()],</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nx">trailingSlash</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;never&#39;</span><span class="p">,</span>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">});</span>
@@ -1532,7 +1532,7 @@
 <li>[ ] <strong>Step 4: Replace README and add LICENSE</strong></li>
 </ul>
 <p>Overwrite <code>README.md</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gh"># Planet Harness</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gh"># orbitalml</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>The interactive showcase site for [<span class="nt">orbit4ml</span>](<span class="na">https://github.com/orbit-ml/orbit4ml</span>).
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
@@ -1751,7 +1751,7 @@ SOFTWARE.
 <a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>  ogImage = &#39;/og-default.png&#39;,
 <a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>} = Astro.props;
 <a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>const fullTitle = title === &#39;Planet Harness&#39; ? title : `${title} · Planet Harness`;
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>const fullTitle = title === &#39;orbitalml&#39; ? title : `${title} · orbitalml`;
 <a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>const canonical = new URL(Astro.url.pathname, Astro.site).href;
 <a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>---
 <a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
@@ -1818,9 +1818,9 @@ SOFTWARE.
 <a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
 <a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>&lt;header class=&quot;nav&quot;&gt;
 <a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>  &lt;div class=&quot;container nav-inner&quot;&gt;
-<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>    &lt;a href=&quot;/&quot; class=&quot;brand&quot; aria-label=&quot;Planet Harness home&quot;&gt;
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>    &lt;a href=&quot;/&quot; class=&quot;brand&quot; aria-label=&quot;orbitalml home&quot;&gt;
 <a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>      &lt;span class=&quot;brand-mark&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
-<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>      &lt;span class=&quot;brand-name&quot;&gt;Planet Harness&lt;/span&gt;
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>      &lt;span class=&quot;brand-name&quot;&gt;orbitalml&lt;/span&gt;
 <a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>    &lt;/a&gt;
 <a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>    &lt;nav aria-label=&quot;Primary&quot;&gt;
 <a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>      &lt;ul class=&quot;nav-links&quot;&gt;
@@ -1937,7 +1937,7 @@ SOFTWARE.
 <a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>&lt;footer class=&quot;footer&quot;&gt;
 <a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>  &lt;div class=&quot;container footer-inner&quot;&gt;
 <a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    &lt;div class=&quot;footer-col&quot;&gt;
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>      &lt;div class=&quot;footer-brand&quot;&gt;Planet Harness&lt;/div&gt;
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>      &lt;div class=&quot;footer-brand&quot;&gt;orbitalml&lt;/div&gt;
 <a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>      &lt;p class=&quot;footer-tagline&quot;&gt;ML harness for the planet.&lt;/p&gt;
 <a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>      &lt;p class=&quot;footer-meta&quot;&gt;Powered by &lt;a href=&quot;https://github.com/orbit-ml/orbit4ml&quot;&gt;orbit4ml&lt;/a&gt; · MIT License&lt;/p&gt;
 <a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    &lt;/div&gt;
@@ -1968,7 +1968,7 @@ SOFTWARE.
 <a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>    &lt;/div&gt;
 <a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>  &lt;/div&gt;
 <a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>  &lt;div class=&quot;container footer-bottom&quot;&gt;
-<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>    &lt;span&gt;© {year} Planet Harness&lt;/span&gt;
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>    &lt;span&gt;© {year} orbitalml&lt;/span&gt;
 <a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>    &lt;span class=&quot;mono&quot;&gt;v1.0&lt;/span&gt;
 <a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>  &lt;/div&gt;
 <a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>&lt;/footer&gt;
@@ -2588,7 +2588,7 @@ SOFTWARE.
 <a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>FORMSPREE_FORM_ID=
 <a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
 <a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a># Plausible (optional — falls back to no analytics if empty)
-<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>PUBLIC_PLAUSIBLE_DOMAIN=planetharness.com
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>PUBLIC_PLAUSIBLE_DOMAIN=orbitalml.com
 </code></pre></div>
 <p>Add <code>.env</code> to <code>.gitignore</code> (ensure it's present — should already be from Astro scaffold):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>grep<span class="w"> </span>-q<span class="w"> </span><span class="s1">&#39;^\.env$&#39;</span><span class="w"> </span>.gitignore<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;.env&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
@@ -2615,7 +2615,7 @@ SOFTWARE.
 <a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>import NewsletterSignup from &#39;../components/NewsletterSignup.tsx&#39;;
 <a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>---
 <a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>
-<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>&lt;BaseLayout title=&quot;Planet Harness&quot;&gt;
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>&lt;BaseLayout title=&quot;orbitalml&quot;&gt;
 <a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>  &lt;Hero /&gt;
 <a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>  &lt;FeatureGrid /&gt;
 <a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>  &lt;section class=&quot;newsletter-section&quot;&gt;
@@ -3563,7 +3563,7 @@ print(f"  Fault events: {fault_events}")
 <a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>  .sort((a, b) =&gt; b.data.date.getTime() - a.data.date.getTime());
 <a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a>---
 <a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>
-<a id="__codelineno-62-9" name="__codelineno-62-9" href="#__codelineno-62-9"></a>&lt;BaseLayout title=&quot;Blog&quot; description=&quot;Thought leadership, benchmarks, and case studies from the Planet Harness team.&quot;&gt;
+<a id="__codelineno-62-9" name="__codelineno-62-9" href="#__codelineno-62-9"></a>&lt;BaseLayout title=&quot;Blog&quot; description=&quot;Thought leadership, benchmarks, and case studies from the orbitalml team.&quot;&gt;
 <a id="__codelineno-62-10" name="__codelineno-62-10" href="#__codelineno-62-10"></a>  &lt;section class=&quot;blog&quot;&gt;
 <a id="__codelineno-62-11" name="__codelineno-62-11" href="#__codelineno-62-11"></a>    &lt;div class=&quot;container&quot;&gt;
 <a id="__codelineno-62-12" name="__codelineno-62-12" href="#__codelineno-62-12"></a>      &lt;div class=&quot;head&quot;&gt;
@@ -3608,7 +3608,7 @@ print(f"  Fault events: {fault_events}")
 <a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>git<span class="w"> </span>push
 </code></pre></div>
 <hr />
-<h3 id="task-23-launch-blog-post-introducing-planet-harness">Task 23: Launch blog post — "Introducing Planet Harness"<a class="headerlink" href="#task-23-launch-blog-post-introducing-planet-harness" title="Permanent link">&para;</a></h3>
+<h3 id="task-23-launch-blog-post-introducing-orbitalml">Task 23: Launch blog post — "Introducing orbitalml"<a class="headerlink" href="#task-23-launch-blog-post-introducing-orbitalml" title="Permanent link">&para;</a></h3>
 <p><strong>Files:</strong>
 - Create: <code>src/content/blog/introducing-planet-harness.mdx</code></p>
 <ul>
@@ -3616,18 +3616,18 @@ print(f"  Fault events: {fault_events}")
 </ul>
 <p>Create <code>src/content/blog/introducing-planet-harness.mdx</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>---
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>title: &quot;Introducing Planet Harness&quot;
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>title: &quot;Introducing orbitalml&quot;
 <a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>description: &quot;A new home for open-source machine learning in space — interactive tutorials, real benchmarks, zero install friction.&quot;
 <a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>date: 2026-04-19
 <a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>author: Mainak Mallick
 <a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>tags: [announcement, orbit4ml]
 <a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a>---
 <a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a>
-<a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a>Today we&#39;re launching **Planet Harness**: the interactive front door for `orbit4ml`, our open ecosystem for machine learning in space.
+<a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a>Today we&#39;re launching **orbitalml**: the interactive front door for `orbit4ml`, our open ecosystem for machine learning in space.
 <a id="__codelineno-64-10" name="__codelineno-64-10" href="#__codelineno-64-10"></a>
 <a id="__codelineno-64-11" name="__codelineno-64-11" href="#__codelineno-64-11"></a>Until today, if you wanted to understand what it takes to train ML models in orbit, your choices were: read dense aerospace papers, dig into the `orbit4ml` API docs, or run our library locally. All three are valid. None of them are *exciting*.
 <a id="__codelineno-64-12" name="__codelineno-64-12" href="#__codelineno-64-12"></a>
-<a id="__codelineno-64-13" name="__codelineno-64-13" href="#__codelineno-64-13"></a>Planet Harness fixes that.
+<a id="__codelineno-64-13" name="__codelineno-64-13" href="#__codelineno-64-13"></a>orbitalml fixes that.
 <a id="__codelineno-64-14" name="__codelineno-64-14" href="#__codelineno-64-14"></a>
 <a id="__codelineno-64-15" name="__codelineno-64-15" href="#__codelineno-64-15"></a>## What you&#39;ll find here
 <a id="__codelineno-64-16" name="__codelineno-64-16" href="#__codelineno-64-16"></a>
@@ -3640,7 +3640,7 @@ print(f"  Fault events: {fault_events}")
 <a id="__codelineno-64-23" name="__codelineno-64-23" href="#__codelineno-64-23"></a>
 <a id="__codelineno-64-24" name="__codelineno-64-24" href="#__codelineno-64-24"></a>Space ML is hard *because the physics is unforgiving*, not because Python is hard. An L2-bound CubeSat with a 100W solar panel and a 25°C thermal budget is a very different compute environment than a data center. Every shortcut you take on the ground is a mission risk in orbit.
 <a id="__codelineno-64-25" name="__codelineno-64-25" href="#__codelineno-64-25"></a>
-<a id="__codelineno-64-26" name="__codelineno-64-26" href="#__codelineno-64-26"></a>`orbit4ml` makes those constraints first-class in your code: `if sat.power.available and sat.thermal.within_budget: train()` is the whole abstraction. Planet Harness lets you *feel* that in a browser tab.
+<a id="__codelineno-64-26" name="__codelineno-64-26" href="#__codelineno-64-26"></a>`orbit4ml` makes those constraints first-class in your code: `if sat.power.available and sat.thermal.within_budget: train()` is the whole abstraction. orbitalml lets you *feel* that in a browser tab.
 <a id="__codelineno-64-27" name="__codelineno-64-27" href="#__codelineno-64-27"></a>
 <a id="__codelineno-64-28" name="__codelineno-64-28" href="#__codelineno-64-28"></a>## What&#39;s next
 <a id="__codelineno-64-29" name="__codelineno-64-29" href="#__codelineno-64-29"></a>
@@ -3652,7 +3652,7 @@ print(f"  Fault events: {fault_events}")
 <a id="__codelineno-64-35" name="__codelineno-64-35" href="#__codelineno-64-35"></a>
 <a id="__codelineno-64-36" name="__codelineno-64-36" href="#__codelineno-64-36"></a>If that sounds interesting, [subscribe to the newsletter](/#newsletter) or [star the repo on GitHub](https://github.com/orbit-ml/orbit4ml). And if you&#39;re flying a real mission with ML on board, [come talk to us](/missions).
 <a id="__codelineno-64-37" name="__codelineno-64-37" href="#__codelineno-64-37"></a>
-<a id="__codelineno-64-38" name="__codelineno-64-38" href="#__codelineno-64-38"></a>Welcome to Planet Harness. Let&#39;s harness the planet.
+<a id="__codelineno-64-38" name="__codelineno-64-38" href="#__codelineno-64-38"></a>Welcome to orbitalml. Let&#39;s harness the planet.
 </code></pre></div>
 <ul>
 <li>[ ] <strong>Step 2: Commit</strong></li>
@@ -3856,7 +3856,7 @@ Training utilization:                   70.5%
 <a id="__codelineno-71-21" name="__codelineno-71-21" href="#__codelineno-71-21"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`https://formspree.io/f/</span><span class="si">${</span><span class="nx">formId</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-71-22" name="__codelineno-71-22" href="#__codelineno-71-22"></a><span class="w">      </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
 <a id="__codelineno-71-23" name="__codelineno-71-23" href="#__codelineno-71-23"></a><span class="w">      </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Accept&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-71-24" name="__codelineno-71-24" href="#__codelineno-71-24"></a><span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">organization</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">_subject</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Planet Harness — Missions inquiry&#39;</span><span class="w"> </span><span class="p">}),</span>
+<a id="__codelineno-71-24" name="__codelineno-71-24" href="#__codelineno-71-24"></a><span class="w">      </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="p">,</span><span class="w"> </span><span class="nx">organization</span><span class="p">,</span><span class="w"> </span><span class="nx">message</span><span class="p">,</span><span class="w"> </span><span class="nx">_subject</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;orbitalml — Missions inquiry&#39;</span><span class="w"> </span><span class="p">}),</span>
 <a id="__codelineno-71-25" name="__codelineno-71-25" href="#__codelineno-71-25"></a><span class="w">    </span><span class="p">});</span>
 <a id="__codelineno-71-26" name="__codelineno-71-26" href="#__codelineno-71-26"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">resp</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">502</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Upstream error&#39;</span><span class="w"> </span><span class="p">});</span>
 <a id="__codelineno-71-27" name="__codelineno-71-27" href="#__codelineno-71-27"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">200</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span><span class="w"> </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">});</span>
@@ -4061,7 +4061,7 @@ Training utilization:                   70.5%
 <a id="__codelineno-75-23" name="__codelineno-75-23" href="#__codelineno-75-23"></a>];
 <a id="__codelineno-75-24" name="__codelineno-75-24" href="#__codelineno-75-24"></a>---
 <a id="__codelineno-75-25" name="__codelineno-75-25" href="#__codelineno-75-25"></a>
-<a id="__codelineno-75-26" name="__codelineno-75-26" href="#__codelineno-75-26"></a>&lt;BaseLayout title=&quot;Community&quot; description=&quot;Get involved with orbit4ml and Planet Harness.&quot;&gt;
+<a id="__codelineno-75-26" name="__codelineno-75-26" href="#__codelineno-75-26"></a>&lt;BaseLayout title=&quot;Community&quot; description=&quot;Get involved with orbit4ml and orbitalml.&quot;&gt;
 <a id="__codelineno-75-27" name="__codelineno-75-27" href="#__codelineno-75-27"></a>  &lt;section class=&quot;community&quot;&gt;
 <a id="__codelineno-75-28" name="__codelineno-75-28" href="#__codelineno-75-28"></a>    &lt;div class=&quot;container&quot;&gt;
 <a id="__codelineno-75-29" name="__codelineno-75-29" href="#__codelineno-75-29"></a>      &lt;div class=&quot;head&quot;&gt;
@@ -4449,14 +4449,14 @@ Training utilization:                   70.5%
 <p>The human performs these steps (one-time setup, not scripted):</p>
 <ol>
 <li>Go to https://vercel.com/new</li>
-<li>Import the <code>orbit-ml/planetharness</code> repo</li>
+<li>Import the <code>orbit-ml/orbitalml</code> repo</li>
 <li>Framework preset: <strong>Astro</strong> (auto-detected)</li>
 <li>Environment variables to add:</li>
 <li><code>BUTTONDOWN_API_KEY</code> = (from Buttondown dashboard)</li>
 <li><code>FORMSPREE_FORM_ID</code> = (from Formspree dashboard)</li>
-<li><code>PUBLIC_PLAUSIBLE_DOMAIN</code> = <code>planetharness.com</code></li>
+<li><code>PUBLIC_PLAUSIBLE_DOMAIN</code> = <code>orbitalml.com</code></li>
 <li>Click <strong>Deploy</strong></li>
-<li>Once live, add custom domain <code>planetharness.com</code> in Vercel → Settings → Domains</li>
+<li>Once live, add custom domain <code>orbitalml.com</code> in Vercel → Settings → Domains</li>
 <li>
 <p>Update DNS at the domain registrar per Vercel's instructions (typically an A record and a CNAME)</p>
 </li>
@@ -4464,7 +4464,7 @@ Training utilization:                   70.5%
 <p>[ ] <strong>Step 4: Verify deploy</strong></p>
 </li>
 </ol>
-<p>Once DNS propagates, visit <code>https://planetharness.com</code> and confirm:
+<p>Once DNS propagates, visit <code>https://orbitalml.com</code> and confirm:
 - Homepage renders with hero animation
 - Nav works, all 7 sections load
 - <code>/learn/getting-started</code> runs a Pyodide code block
@@ -4503,7 +4503,7 @@ Training utilization:                   70.5%
 <li>[ ] <strong>Step 1: Expand README</strong></li>
 </ul>
 <p>Overwrite <code>README.md</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a><span class="gh"># Planet Harness</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a><span class="gh"># orbitalml</span>
 <a id="__codelineno-97-2" name="__codelineno-97-2" href="#__codelineno-97-2"></a>
 <a id="__codelineno-97-3" name="__codelineno-97-3" href="#__codelineno-97-3"></a>The interactive showcase site for [<span class="nt">orbit4ml</span>](<span class="na">https://github.com/orbit-ml/orbit4ml</span>).
 <a id="__codelineno-97-4" name="__codelineno-97-4" href="#__codelineno-97-4"></a>
@@ -4553,10 +4553,10 @@ Training utilization:                   70.5%
 <a id="__codelineno-99-5" name="__codelineno-99-5" href="#__codelineno-99-5"></a>```markdown
 <a id="__codelineno-99-6" name="__codelineno-99-6" href="#__codelineno-99-6"></a># Launch Checklist
 <a id="__codelineno-99-7" name="__codelineno-99-7" href="#__codelineno-99-7"></a>
-<a id="__codelineno-99-8" name="__codelineno-99-8" href="#__codelineno-99-8"></a>One-time steps to take Planet Harness v1 live.
+<a id="__codelineno-99-8" name="__codelineno-99-8" href="#__codelineno-99-8"></a>One-time steps to take orbitalml v1 live.
 <a id="__codelineno-99-9" name="__codelineno-99-9" href="#__codelineno-99-9"></a>
 <a id="__codelineno-99-10" name="__codelineno-99-10" href="#__codelineno-99-10"></a>## DNS &amp; domain
-<a id="__codelineno-99-11" name="__codelineno-99-11" href="#__codelineno-99-11"></a>- [ ] Register `planetharness.com` at a registrar
+<a id="__codelineno-99-11" name="__codelineno-99-11" href="#__codelineno-99-11"></a>- [ ] Register `orbitalml.com` at a registrar
 <a id="__codelineno-99-12" name="__codelineno-99-12" href="#__codelineno-99-12"></a>- [ ] Add custom domain in Vercel project
 <a id="__codelineno-99-13" name="__codelineno-99-13" href="#__codelineno-99-13"></a>- [ ] Add A/CNAME records per Vercel instructions
 <a id="__codelineno-99-14" name="__codelineno-99-14" href="#__codelineno-99-14"></a>- [ ] Verify SSL is issued (Vercel auto-issues Let&#39;s Encrypt)
@@ -4564,10 +4564,10 @@ Training utilization:                   70.5%
 <a id="__codelineno-99-16" name="__codelineno-99-16" href="#__codelineno-99-16"></a>## Env vars (Vercel → Project → Settings → Environment Variables)
 <a id="__codelineno-99-17" name="__codelineno-99-17" href="#__codelineno-99-17"></a>- [ ] `BUTTONDOWN_API_KEY` (from buttondown.email → Settings → API)
 <a id="__codelineno-99-18" name="__codelineno-99-18" href="#__codelineno-99-18"></a>- [ ] `FORMSPREE_FORM_ID` (from formspree.io → New form)
-<a id="__codelineno-99-19" name="__codelineno-99-19" href="#__codelineno-99-19"></a>- [ ] `PUBLIC_PLAUSIBLE_DOMAIN` = `planetharness.com`
+<a id="__codelineno-99-19" name="__codelineno-99-19" href="#__codelineno-99-19"></a>- [ ] `PUBLIC_PLAUSIBLE_DOMAIN` = `orbitalml.com`
 <a id="__codelineno-99-20" name="__codelineno-99-20" href="#__codelineno-99-20"></a>
 <a id="__codelineno-99-21" name="__codelineno-99-21" href="#__codelineno-99-21"></a>## Analytics
-<a id="__codelineno-99-22" name="__codelineno-99-22" href="#__codelineno-99-22"></a>- [ ] Create Plausible site for `planetharness.com`
+<a id="__codelineno-99-22" name="__codelineno-99-22" href="#__codelineno-99-22"></a>- [ ] Create Plausible site for `orbitalml.com`
 <a id="__codelineno-99-23" name="__codelineno-99-23" href="#__codelineno-99-23"></a>- [ ] Verify Plausible is receiving events after deploy
 <a id="__codelineno-99-24" name="__codelineno-99-24" href="#__codelineno-99-24"></a>
 <a id="__codelineno-99-25" name="__codelineno-99-25" href="#__codelineno-99-25"></a>## Pre-launch verification
@@ -4586,7 +4586,7 @@ Training utilization:                   70.5%
 <a id="__codelineno-99-38" name="__codelineno-99-38" href="#__codelineno-99-38"></a>- [ ] Merge `main` → production deploy
 <a id="__codelineno-99-39" name="__codelineno-99-39" href="#__codelineno-99-39"></a>- [ ] Announce on GitHub Discussions
 <a id="__codelineno-99-40" name="__codelineno-99-40" href="#__codelineno-99-40"></a>- [ ] Post launch blog post link to relevant communities (HackerNews, /r/space, space-ML Slack groups, Twitter/X)
-<a id="__codelineno-99-41" name="__codelineno-99-41" href="#__codelineno-99-41"></a>- [ ] Update `orbit4ml` README with &quot;See the interactive tutorials at planetharness.com&quot;
+<a id="__codelineno-99-41" name="__codelineno-99-41" href="#__codelineno-99-41"></a>- [ ] Update `orbit4ml` README with &quot;See the interactive tutorials at orbitalml.com&quot;
 <a id="__codelineno-99-42" name="__codelineno-99-42" href="#__codelineno-99-42"></a>
 <a id="__codelineno-99-43" name="__codelineno-99-43" href="#__codelineno-99-43"></a>## Post-launch (week 1)
 <a id="__codelineno-99-44" name="__codelineno-99-44" href="#__codelineno-99-44"></a>- [ ] Watch for 404s in Vercel logs — fix broken links

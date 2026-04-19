@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://orbit-ml.github.io/orbit4ml/superpowers/specs/2026-04-19-planetharness-design/">
+        <link rel="canonical" href="https://orbit-ml.github.io/orbit4ml/superpowers/specs/2026-04-19-orbitalml-design/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Planet Harness — Design Spec - orbit4ml</title>
+        <title>orbitalml — Design Spec - orbit4ml</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#planet-harness-design-spec" class="md-skip">
+        <a href="#orbitalml-design-spec" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Planet Harness — Design Spec
+              orbitalml — Design Spec
             
           </span>
         </div>
@@ -985,7 +985,7 @@
 
 
   
-    <a href="https://github.com/orbit-ml/orbit4ml/edit/main/docs/superpowers/specs/2026-04-19-planetharness-design.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/orbit-ml/orbit4ml/edit/main/docs/superpowers/specs/2026-04-19-orbitalml-design.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -993,11 +993,14 @@
   
 
 
-<h1 id="planet-harness-design-spec">Planet Harness — Design Spec<a class="headerlink" href="#planet-harness-design-spec" title="Permanent link">&para;</a></h1>
+<h1 id="orbitalml-design-spec">orbitalml — Design Spec<a class="headerlink" href="#orbitalml-design-spec" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Rename note (2026-04-19):</strong> This platform was originally named "Planet Harness" during brainstorming; renamed to <strong>orbitalml</strong> after the GitHub repo was created at <code>orbit-ml/orbitalml</code>. File names preserved for history; content updated throughout. Tagline is pending final user confirmation.</p>
+</blockquote>
 <p><strong>Date:</strong> 2026-04-19
 <strong>Status:</strong> Draft, pending implementation plan</p>
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
-<p>Planet Harness is the interactive showcase site for the <code>orbit4ml</code> open-source library. It serves two aligned goals:</p>
+<p>orbitalml is the interactive showcase site for the <code>orbit4ml</code> open-source library. It serves two aligned goals:</p>
 <ol>
 <li><strong>CSR mission</strong> — Lower the activation energy for anyone curious about ML in space. No install, no signup, instant interactivity.</li>
 <li><strong>Commercial pipeline</strong> — Signal credibility and capture leads for the space ML runtime company the user is building around <code>orbit4ml</code>.</li>
@@ -1005,14 +1008,14 @@
 <p>The site is a <strong>marketing/learning asset, not a SaaS.</strong> No accounts, no compute-backed submissions, no self-hosted forum.</p>
 <h2 id="name-and-tagline">Name and Tagline<a class="headerlink" href="#name-and-tagline" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Name:</strong> Planet Harness</li>
+<li><strong>Name:</strong> orbitalml</li>
 <li><strong>Tagline (H1 on hero):</strong> <em>ML harness for the planet.</em></li>
 <li><strong>Sub-copy:</strong> "Interactive tutorials, benchmarks, and playgrounds for machine learning under the real constraints of space. No install required."</li>
 </ul>
 <h2 id="relationship-to-existing-orbit4ml-docs">Relationship to Existing orbit4ml Docs<a class="headerlink" href="#relationship-to-existing-orbit4ml-docs" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Planet Harness</strong> (new) — The "front door." Hero, tutorials, playground, blog, benchmarks, lead capture.</li>
-<li><strong>orbit4ml MkDocs site</strong> (existing, at <code>orbit-ml.github.io/orbit4ml</code>) — Stays as the auto-generated API reference. Planet Harness's "Docs" nav links out to it.</li>
+<li><strong>orbitalml</strong> (new) — The "front door." Hero, tutorials, playground, blog, benchmarks, lead capture.</li>
+<li><strong>orbit4ml MkDocs site</strong> (existing, at <code>orbit-ml.github.io/orbit4ml</code>) — Stays as the auto-generated API reference. orbitalml's "Docs" nav links out to it.</li>
 </ul>
 <p>Two sites, one visual identity. Future work may unify them, but that's out of scope for v1.</p>
 <h2 id="visual-direction">Visual Direction<a class="headerlink" href="#visual-direction" title="Permanent link">&para;</a></h2>
@@ -1075,10 +1078,10 @@
 <li><strong>Code execution:</strong> Pyodide 0.x (latest stable) loaded on-demand per page; JupyterLite hosted for the Playground surface.</li>
 <li><strong>Lead capture:</strong> Newsletter via <strong>Buttondown</strong> or <strong>ConvertKit</strong> (hosted, no infra). "For Missions" contact form via <strong>Formspree</strong> or Vercel serverless function posting to email.</li>
 <li><strong>Analytics:</strong> <strong>Plausible</strong> (privacy-friendly, no cookie banner) or Vercel Analytics.</li>
-<li><strong>Repo layout:</strong> Standalone <code>planetharness</code> repo (separate from <code>orbit4ml</code> library repo). Library consumed via its documented public API.</li>
+<li><strong>Repo layout:</strong> Standalone <code>orbitalml</code> repo (separate from <code>orbit4ml</code> library repo). Library consumed via its documented public API.</li>
 </ul>
 <h2 id="architecture-outline">Architecture Outline<a class="headerlink" href="#architecture-outline" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>planetharness/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>orbitalml/
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── astro.config.mjs
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── src/
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── pages/
@@ -1123,7 +1126,7 @@
 <li>Community page with GitHub Discussions embed/link</li>
 <li>Mobile-responsive (breakpoints: 640px, 1024px)</li>
 <li>Dark theme only (no light mode for v1)</li>
-<li>Custom domain: <code>planetharness.com</code> (user to register)</li>
+<li>Custom domain: <code>orbitalml.com</code> (user to register)</li>
 </ul>
 <h2 id="whats-out-of-scope-v1-defer-explicitly">What's Out of Scope (v1, defer explicitly)<a class="headerlink" href="#whats-out-of-scope-v1-defer-explicitly" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1185,10 +1188,10 @@
 </table>
 <h2 id="non-goals">Non-Goals<a class="headerlink" href="#non-goals" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Replacing the MkDocs API reference (it stays; Planet Harness links to it)</li>
+<li>Replacing the MkDocs API reference (it stays; orbitalml links to it)</li>
 <li>Replacing GitHub Discussions with a self-hosted forum</li>
 <li>Building a full LMS</li>
-<li>Competing with Kaggle / Hugging Face Spaces — Planet Harness is specialized for space ML, not a general platform</li>
+<li>Competing with Kaggle / Hugging Face Spaces — orbitalml is specialized for space ML, not a general platform</li>
 </ul>
 
 
